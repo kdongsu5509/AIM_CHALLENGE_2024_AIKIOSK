@@ -13,24 +13,48 @@ public class MainController {
 		return "ksk1_index";
 	}
 
-	//메인 화면 연결
-	@GetMapping({ "", "/two" }) //127.0.0.1/8080
-	public String two(Model model) {
+	@GetMapping("/ksk1")
+	public String ksk1(Model model) {
+		return "ksk1_index";
+	}
+
+	@GetMapping("/ksk2")
+	public String ksk2(Model model) {
 		return "ksk2_main";
 	}
 
-	@GetMapping("/three")
-	public String three() {
-		return "footer.jsp";
+	@GetMapping("/ksk3_1")
+	public String ksk3(Model model) {
+		return "ksk3_1_order_1";
 	}
 
-	@GetMapping("/four")
-	public String four() {
-		return "header.jsp";
+	@GetMapping("/ksk3_2")
+	public String ksk3_2(Model model) {
+		return "ksk3_2_order_2";
 	}
 
-	@GetMapping("/five")
-	public String five() {
-		return "index.jsp";
+	@GetMapping("/ksk4")
+	public String ksk4(Model model) {
+		return "ksk4_order_up";
+	}
+
+	@GetMapping("/ksk5")
+	public String ksk5(Model model) {
+		return "ksk5_shop_out_up";
+	}
+
+	@GetMapping("/ksk6")
+	public String ksk6(Model model) {
+		return "ksk6_pay_info";
+	}
+
+	@GetMapping("/ksk7")
+	public String ksk7(Model model) {
+		return "ksk7_receipt_up";
+	}
+
+	@GetMapping("/ksk8")
+	public String ksk8(Model model) {
+		return "ksk8_order_clear";
 	}
 }
