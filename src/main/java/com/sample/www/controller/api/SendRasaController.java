@@ -23,7 +23,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/api/chatBot/")
-//@RestController를 사용하여 REST API를 제공하는 컨트롤러임을 선언합니다.
 public class SendRasaController {
 
 	@PostMapping("chat") //  api/chatBot/chat

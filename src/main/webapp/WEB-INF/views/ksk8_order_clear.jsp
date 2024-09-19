@@ -1,23 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DREAM COFFEE</title>
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/order_clear.css">
-</head>
-<body>
-<!-- 주문 완료 페이지 -->
-<main class="main_main">
-  <!-- 상단 -->
-  <header>
-    <p>
-      DREAM COFFEE
-    </p>
-  </header>
-
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
   <!-- 주문 완료 -->
   <article class="order_clear">
     <div>

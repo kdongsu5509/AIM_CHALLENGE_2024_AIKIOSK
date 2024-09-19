@@ -1,24 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DREAM COFFEE</title>
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/order.css">
-  <link rel="stylesheet" href="../css/shop_out_up.css">
-</head>
-<body>
-<!-- 매장/포장 모달 페이지 -->
-<main class="order_main">
-  <!-- 상단 -->
-  <header>
-    <p>
-      DREAM COFFEE
-    </p>
-  </header>
+<jsp:include page="layout/header.jsp" />
 
   <!-- STEP -->
   <article class="step">
