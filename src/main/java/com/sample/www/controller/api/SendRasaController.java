@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/chatBot/")
 public class SendRasaController {
@@ -36,7 +38,7 @@ public class SendRasaController {
 		Map<String, Object> result = new HashMap<>();
 		String date[];
 		String message = "";
-		String url = "http://localhost:5005/webhooks/rest/webhook"; // Rasa 서버 URL을 정의합니다.
+		String url = "http://155.230.135.132:5005/webhooks/rest/webhook"; // Rasa 서버 URL을 정의합니다.
 
 		String unicodeString = ""; // 유니코드 처리된 문자열을 저장할 변수입니다.
 
@@ -47,6 +49,7 @@ public class SendRasaController {
 			connection.setRequestMethod("POST"); // POST 요청을 설정합니다.
 			connection.setRequestProperty("Content-Type", "application/json; charset=utf-8"); // 요청 콘텐츠 타입을 설정합니다.
 
+			log.info("message : {}", map.get("message"));
 			// 요청 바디를 JSON 형식으로 작성하여 전송할 메시지를 추가합니다.
 			String body = "{\"message\": \"" + map.get("message") + "\"}";
 
