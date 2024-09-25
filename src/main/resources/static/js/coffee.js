@@ -1,5 +1,4 @@
 //아래 모든 것은 SpeechRecognition임.
-
 	// SpeechRecognition은 음성 인식 서비스를 제공하는 API이다.
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 	// SpeechGrammarList는 음성 인식 서비스에 사용되는 문법 목록을 제공하는 API이다.(뒤에 것은 구형 브라우저)
@@ -186,7 +185,7 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 	  recognition.continious = false; // true: 음성인식을 계속해서 수행, false: 음성인식을 한번만 수행
 	  recognition.maxAlternatives = 1; // 최대 인식 결과 수 = 1
 	
-	  recognition.start();
+	  recognition.start(); // 음성 인식 시작.
 
 	  recognition.onresult = function(event) {
 		  // 음성 인식 결과를 가져옵니다.
@@ -218,6 +217,8 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 			// 서버에 음성 인식 결과를 전송하고 응답을 처리합니다.
 		  var aoo = ajax_object_options('POST', '/api/chatBot/chat', { message : speechResult });
 			ajax(aoo, function (resp) {
+				console.log(resp.recipient_id);
+				console.log(resp.text);
 				var text = `<div class="talk">
                     <div class="ask_talk">
                     <p>${resp.text}</p>
@@ -233,7 +234,7 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 				// 음성 인식 결과에 따라 주문, 결제, 취소 등을 처리합니다.
 				if (text.includes("주문하신") || text.includes("수정")) {
 					$('.orderListBox').empty();
-					var data = {
+					var data = { //declartion of data object
 						content : '',
 						coffeeKind : 0,
 						coffeeCount : 0,
