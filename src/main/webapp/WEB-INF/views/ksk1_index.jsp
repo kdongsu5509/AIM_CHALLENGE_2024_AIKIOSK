@@ -84,22 +84,7 @@
                     <div class="ask_de"></div>
                 </div>
             </div>
-            <!-- <div class="talk">
-              <div class="people_talk">
-                <p>
-                  <span class="temp">아이스</span>
-                  <span class="menu">아메리카노</span>
-                  <span class="number">한</span> 잔에
-                  <span class="option">샷 추가</span>해 주세요.</p>
-                <div class="people_de"></div>
-              </div>
-            </div>
-            <div class="talk">
-              <div class="ask_talk">
-                <p>입력된 주문을 확인해 주세요.</p>
-                <div class="ask_de"></div>
-              </div>
-            </div> -->
+            <div id="onProgressBar"></div>
         </div>
     </article>
 

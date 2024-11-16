@@ -52,6 +52,18 @@ function startRecording() {
 
             // 녹음 시작
             mediaRecorder.start();
+            var progressBarElement = document.getElementById('onProgressBar');
+            var progressBar = new ProgressBar.Circle(progressBarElement, {
+                strokeWidth: 6,
+                color: '#FFEA82',
+                trailColor: '#eee',
+                trailWidth: 1,
+                svgStyle: null
+            });
+            progressBar.animate(1, {
+                duration: 5000
+            });
+            progressBarElement.add(progressBar);
             var timeout = 5000;
             setTimeout(() => {
                 mediaRecorder.stop();
