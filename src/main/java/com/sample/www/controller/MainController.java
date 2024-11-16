@@ -9,9 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping
 @Controller
 public class MainController {
+    String convertedText;
+
     @PostMapping("/audio")
     public String uploadAudio(@RequestParam("file") MultipartFile file) {
         try {
+            convertedText = new AudioToText().audioToText(file);
             return "redirect:/ksk3_1";
         } catch (Exception e) {
             e.printStackTrace();
