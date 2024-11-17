@@ -1,5 +1,7 @@
 let audioChunks = []; // 음성 녹음을 담을 변수
 let mediaRecorder; // 녹음 기능 자체
+var convertedText;
+
 window.onload = function () {
     startRecording();  // 페이지 로드 후 바로 녹음 시작
 };
@@ -39,8 +41,8 @@ function startRecording() {
                     body: formData
                 })
                     .then(response => {
-                        if (response.redirected) {
-                            window.location.href = response.url; // 업로드 성공 시 리다이렉트
+                        if (response.ok) {
+                            convertedText = response.body// 업로드 후 변환 성공 시 변환된 텍스트를 가지고 온다.
                         } else {
                             console.error('Failed to upload'); // 업로드 실패 시 에러 메시지 출력
                         }
@@ -48,21 +50,25 @@ function startRecording() {
                     .catch(error => {
                         console.error('Error occurred during upload:', error); // 네트워크 오류 발생 시 에러 메시지 출력
                     });
+
+                // String type으로 convertedText를 전달./
+                fetch('/result', {
+                    method: 'GET',
+                }).then(response => {
+                    if (response.ok) {
+                        return null;
+                    } else {
+                        console.error("Failed to Analyzing");
+                    }
+                }).catch(error => {
+                    console.error('Error occured during analyzing : ', error);
+                })
             };
 
             // 녹음 시작
             mediaRecorder.start();
             var progressBarElement = document.getElementById('onProgressBar');
-            var progressBar = new ProgressBar.Circle(progressBarElement, {
-                strokeWidth: 6,
-                color: '#FFEA82',
-                trailColor: '#eee',
-                trailWidth: 1,
-                svgStyle: null
-            });
-            progressBar.animate(1, {
-                duration: 5000
-            });
+            var progressBar = getProgressBar();
             progressBarElement.add(progressBar);
             var timeout = 5000;
             setTimeout(() => {
