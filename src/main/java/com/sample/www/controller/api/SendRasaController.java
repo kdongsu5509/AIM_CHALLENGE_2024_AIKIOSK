@@ -36,7 +36,7 @@ public class SendRasaController {
         Map<String, Object> result = new HashMap<>();
         String date[];
         String message = "";
-        String url = "http://155.230.135.131:5058/webhooks/rest/webhook"; // Rasa 서버 URL을 정의합니다.
+        String url = "http://155.230.135.131:5005/webhooks/rest/webhook"; // Rasa 서버 URL을 정의합니다.
 
         String unicodeString = ""; // 유니코드 처리된 문자열을 저장할 변수입니다.
 
