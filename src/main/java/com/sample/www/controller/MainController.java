@@ -1,38 +1,26 @@
 package com.sample.www.controller;
 
-import java.util.List;
-import model.Coffee;
-import model.TempStorage;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping
-@Controller
+@RestController  // Use @RestController instead of @Controller for handling REST requests
+@Slf4j
 public class MainController {
-    String convertedText;
 
-    @PostMapping("/audio")
-    public String uploadAudio(@RequestParam("file") MultipartFile file) {
-        try {
-            convertedText = new AudioToText().audioToText(file);
-            new TempStorage().setConvertedString(convertedText);
-            return convertedText;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "failToRunSTT";
-        }
-    }
+    @PostMapping("/analyze")
+    public ResponseEntity<Map<String, String>> getText(@RequestBody Map<String, String> payload) {
+        String text = payload.get("text");
+        log.info("text = {}", text);
 
-    @GetMapping("/result")
-    public List<Coffee> returnAnalyze() {
-        //변경된 convertedText를 받아와서 그것을 분석기에 넣습니다.
-        List<Coffee> result = new AnalyzeText().analyze(new TempStorage().getConvertedString());
+        Map<String, String> response = new HashMap<>();
+        response.put("text", text);
+        // You can perform any processing on the text here
 
-        //TODO : 반환된 커피 리스트를 프론트에서 어떻게 보이도록 할 지 JS 와 JSP 조작
-        return result;
+        return ResponseEntity.ok(response);  // Return processed text as response
     }
 }

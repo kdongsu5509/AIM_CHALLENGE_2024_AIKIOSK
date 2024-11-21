@@ -33,44 +33,48 @@ function startRecording() {
 
                 // FormData 객체를 생성하여 오디오 파일과 함께 전송할 데이터 준비
                 const formData = new FormData();
-                formData.append("file", audioBlob);
+                formData.append('file', audioBlob);
 
-                // 파일을 서버에 업로드
-                fetch('/audio', {
+                // 파일을 Whisper에 업로드
+                //TODO : whisper로 전달.
+                fetch('http://155.230.135.131:10001/transcribe', {
                     method: 'POST',
                     body: formData
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            convertedText = response.body// 업로드 후 변환 성공 시 변환된 텍스트를 가지고 온다.
-                        } else {
-                            console.error('Failed to upload'); // 업로드 실패 시 에러 메시지 출력
+                    .then(resp => resp.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.transcription) {
+                            console.log('Transcription : ', data.transcription);
+                            alert('Transcription : ' + data.transcription); // Fixed: Added the missing closing brace and corrected alert syntax
+                        } else if (data.error) {
+                            console.error('Error : ', data.error);
                         }
                     })
                     .catch(error => {
                         console.error('Error occurred during upload:', error); // 네트워크 오류 발생 시 에러 메시지 출력
                     });
 
-                // String type으로 convertedText를 전달./
-                fetch('/result', {
-                    method: 'GET',
-                }).then(response => {
-                    if (response.ok) {
-                        return null;
-                    } else {
-                        console.error("Failed to Analyzing");
-                    }
-                }).catch(error => {
-                    console.error('Error occured during analyzing : ', error);
-                })
+                //TODO : 전달받은 String을 가지고 있는다.
+                //TODO : 2. Spring에 전달한다.
+
+                // // String type으로 convertedText를 전달./
+                // fetch('/result', {
+                //     method: 'GET',
+                // }).then(response => {
+                //     if (response.ok) {
+                //         return null;
+                //     } else {
+                //         console.error("Failed to Analyzing");
+                //     }
+                // }).catch(error => {
+                //     console.error('Error occured during analyzing : ', error);
+                // })
             };
 
             // 녹음 시작
             mediaRecorder.start();
-            var progressBarElement = document.getElementById('onProgressBar');
-            var progressBar = getProgressBar();
-            progressBarElement.add(progressBar);
-            var timeout = 5000;
+
             setTimeout(() => {
                 mediaRecorder.stop();
             }, 5000);

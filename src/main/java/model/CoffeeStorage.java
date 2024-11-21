@@ -32,7 +32,7 @@ public class CoffeeStorage {
                 .findFirst()
                 .orElse(null);
         targetCoffee.setName(coffee.getName());
-        targetCoffee.setPrice(coffee.getPrice());
+        //TODO : 온도 설정하는 기능 추가되야함.
         targetCoffee.setCount(coffee.getCount());
     }
 }

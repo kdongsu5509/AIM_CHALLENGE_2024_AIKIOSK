@@ -20,7 +20,7 @@
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/ajax.js"></script>
-    <script src="/js/mic.js"></script>
+    <script src="/js/googleTts.js"></script>
 
 </head>
 <body>

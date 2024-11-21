@@ -14,6 +14,11 @@ public class AnalyzeText {
 
     public List<Coffee> analyze(String temp) {
         //TODO : 분석된 값을 받아 COFFEE LIST 완성된 커피 리스트를 반환하도록 코드를 작성해야함.
+        /**
+         * NLP는 String만 반환
+         * @ param : temp
+         * @ return : analyzedText;
+         */
         return result;
     }
 }
